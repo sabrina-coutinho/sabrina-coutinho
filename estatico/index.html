@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-qMrCrU0Ado4fbSvbq1cOf7J79o26BmiwmJa5IcpzaLw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no, email=no">
+<meta property="og:title" content="Sabrina Coutinho">
+<meta property="og:description" content="Mãe, fitness, moda e lifestyle em Brasília. Cupons exclusivos e parcerias.">
+<meta property="og:image" content="fotos/sabrina-hero.jpg">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231D1A16'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-style='italic' font-size='30' fill='%23F4EFE8' text-anchor='middle'%3ESc%3C/text%3E%3C/svg%3E">
+<title>Sabrina Coutinho</title>
+<meta name="description" content="Sabrina Coutinho · Mãe, fitness, moda e lifestyle em Brasília. Cupons exclusivos e parcerias.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: lookbook editorial — hero assimétrico com retrato em arco, cupons como "tickets" com picote, destaques em anéis de story */
+:root {
+  --bg: #F4EFE8;        /* off-white */
+  --surface: #EAE0D3;   /* bege */
+  --nude: #D8BBA3;      /* nude */
+  --ink: #1D1A16;       /* preto quente */
+  --muted: #6F665B;
+  --olive: #5D6343;     /* verde oliva discreto */
+  --olive-soft: #DCDCC8;
+  --line: #D6CABB;
+  --paper: #FBF8F3;
+  --shadow: 0 1px 0 rgba(29,26,22,.04), 0 18px 40px -24px rgba(29,26,22,.35);
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161410; --surface: #221F1A; --nude: #C7A68D; --ink: #F1EBE2; --muted: #A99D8D;
+    --olive: #AEB38D; --olive-soft: #2D2F22; --line: #39342C; --paper: #1C1A15;
+    --shadow: 0 18px 40px -24px rgba(0,0,0,.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161410; --surface: #221F1A; --nude: #C7A68D; --ink: #F1EBE2; --muted: #A99D8D;
+  --olive: #AEB38D; --olive-soft: #2D2F22; --line: #39342C; --paper: #1C1A15;
+  --shadow: 0 18px 40px -24px rgba(0,0,0,.8);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; border-radius: 4px; }
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.02; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
+h2 em, h1 em { font-style: italic; color: var(--olive); }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+section { padding-block: clamp(64px, 10vw, 120px); }
+.sec-head { display: grid; gap: 14px; margin-bottom: clamp(32px, 5vw, 56px); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--ink); --btn-fg: var(--bg);
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 24px; border-radius: 999px; border: 1px solid var(--btn-bg);
+  background: var(--btn-bg); color: var(--btn-fg);
+  font: 600 .92rem/1 var(--body); letter-spacing: .01em; text-decoration: none; cursor: pointer;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+}
+.btn::after { /* brilho sutil */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform .8s var(--ease);
+}
+.btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 30px -14px rgba(29,26,22,.55); }
+.btn:hover::after { transform: translateX(120%); }
+.btn:active { transform: scale(.98); }
+.btn .arrow { transition: transform .35s var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn.ghost { --btn-bg: transparent; --btn-fg: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); }
+.btn.olive { --btn-bg: var(--olive); --btn-fg: var(--bg); }
+
+/* ---------- Nav ---------- */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+.nav.scrolled { border-bottom-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.mono-mark { font-family: var(--display); font-style: italic; font-size: 1.6rem; text-decoration: none; letter-spacing: -.04em; }
+.nav-links { display: none; gap: 28px; font-size: .88rem; }
+.nav-links a { text-decoration: none; color: var(--muted); position: relative; transition: color .25s; }
+.nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+@media (min-width: 860px) { .nav-links { display: flex; } }
+.nav .btn { padding: 11px 18px; font-size: .82rem; }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(36px, 7vw, 80px) clamp(48px, 7vw, 90px); }
+.hero-grid { display: grid; gap: clamp(32px, 6vw, 72px); align-items: center; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 1.15fr .85fr; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-size: clamp(3.4rem, 11vw, 8.2rem); line-height: .9; letter-spacing: -.035em; }
+.hero h1 span { display: block; }
+.hero h1 .l2 { padding-left: clamp(24px, 8vw, 110px); font-style: italic; color: var(--olive); }
+.handle { font-family: var(--mono); font-size: .95rem; display: inline-flex; gap: 10px; align-items: center; text-decoration: none; color: var(--ink); }
+.handle .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--olive); box-shadow: 0 0 0 0 var(--olive); animation: ping 2.4s infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--olive) 60%, transparent); } 80%,100% { box-shadow: 0 0 0 10px transparent; } }
+.rotator { font-size: clamp(1.15rem, 2.4vw, 1.45rem); font-family: var(--display); }
+.rotator .word { display: inline-block; font-style: italic; color: var(--olive); min-width: 6.5ch; transition: opacity .35s, transform .45s var(--ease), filter .35s; }
+.rotator .word.out { opacity: 0; transform: translateY(-10px); filter: blur(4px); }
+.subline { font-size: .92rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.subline span + span::before { content: "·"; margin-right: 14px; color: var(--nude); }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.hero-meta { display: flex; gap: 28px; margin-top: 10px; padding-top: 22px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.hero-meta b { font-family: var(--display); font-size: 1.9rem; font-weight: 400; display: block; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero-meta small { font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+.portrait { position: relative; justify-self: center; width: min(100%, 420px); }
+.arch {
+  position: relative; aspect-ratio: 4 / 5.4; max-width: 100%;
+  border-radius: 999px 999px 18px 18px; overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 30% 20%, color-mix(in srgb, var(--paper) 70%, transparent), transparent 60%),
+    linear-gradient(165deg, var(--nude), var(--surface) 55%, var(--olive-soft));
+  box-shadow: var(--shadow);
+}
+.arch .initial { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-style: italic; font-size: clamp(9rem, 26vw, 15rem); color: color-mix(in srgb, var(--ink) 14%, transparent); line-height: 1; }
+.arch .ph-note { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-family: var(--mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.arch img { width: 100%; height: 100%; object-fit: cover; }
+.seal { position: absolute; width: 132px; height: 132px; left: -28px; bottom: 54px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; box-shadow: var(--shadow); }
+.seal svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 22s linear infinite; }
+.seal text { font-family: var(--mono); font-size: 9.2px; letter-spacing: .22em; fill: currentColor; text-transform: uppercase; }
+.seal .core { font-family: var(--display); font-style: italic; font-size: 1.5rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 520px) { .seal { width: 108px; height: 108px; left: -6px; } }
+.tag-float { position: absolute; right: -10px; top: 18%; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: .78rem; box-shadow: var(--shadow); animation: bob 5s ease-in-out infinite; }
+@media (max-width: 520px) { .tag-float { right: 0; } }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* Abertura */
+.intro > * { animation: rise .9s var(--ease) both; }
+.intro > *:nth-child(2) { animation-delay: .08s; } .intro > *:nth-child(3) { animation-delay: .16s; }
+.intro > *:nth-child(4) { animation-delay: .24s; } .intro > *:nth-child(5) { animation-delay: .32s; } .intro > *:nth-child(6) { animation-delay: .4s; }
+.portrait { animation: unveil 1.2s var(--ease) .15s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } }
+@keyframes lift { from { opacity: .45; transform: translateY(56px); } }
+@keyframes unveil { from { opacity: 0; transform: translateY(30px) scale(.96); clip-path: inset(18% 0 0 0 round 999px 999px 18px 18px); } to { clip-path: inset(0 0 0 0 round 0); } }
+
+/* ---------- Marquee ---------- */
+.marquee { border-block: 1px solid var(--line); overflow: hidden; padding-block: 18px; background: var(--paper); }
+.marquee-track { display: flex; gap: 48px; width: max-content; animation: slide 32s linear infinite; font-family: var(--display); font-size: clamp(1.4rem, 3vw, 2rem); font-style: italic; }
+.marquee-track span { display: inline-flex; align-items: center; gap: 48px; white-space: nowrap; }
+.marquee-track span::after { content: "✦"; font-style: normal; font-size: .8rem; color: var(--olive); }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* ---------- Reveal ao rolar (estado de repouso visível) ---------- */
+@supports (animation-timeline: view()) {
+  .reveal { animation: lift linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+}
+
+/* ---------- Cupons ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.chip { border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; padding: 9px 16px; font: 500 .85rem/1 var(--body); cursor: pointer; transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease); }
+.chip:hover { border-color: var(--ink); transform: translateY(-1px); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.coupons { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); }
+.ticket {
+  position: relative; display: grid; grid-template-rows: 1fr auto;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), opacity .35s, border-color .3s;
+}
+.ticket:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: var(--shadow); border-color: var(--nude); }
+.ticket.hide { display: none; }
+.ticket.pop { animation: rise .5s var(--ease) both; }
+.ticket-body { padding: 24px 24px 22px; display: grid; gap: 10px; align-content: start; }
+.ticket-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.cat { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--olive); }
+.ticket h3 { font-size: 1.65rem; }
+.ticket p { color: var(--muted); font-size: .92rem; }
+.ticket .benefit { color: var(--ink); font-family: var(--display); font-size: 2.6rem; line-height: 1; font-style: italic; }
+.ticket .benefit small { font-family: var(--body); font-style: normal; font-size: .8rem; color: var(--muted); margin-left: 6px; }
+.ticket-stub { position: relative; border-top: 2px dashed var(--line); padding: 16px 24px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ticket-stub::before, .ticket-stub::after { content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); }
+.ticket-stub::before { left: -12px; clip-path: inset(0 0 0 50%); }
+.ticket-stub::after { right: -12px; clip-path: inset(0 50% 0 0); }
+.code { font-family: var(--mono); font-size: 1.05rem; letter-spacing: .1em; font-weight: 500; user-select: all; }
+.copy {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; min-width: 128px; justify-content: center;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--bg); border-radius: 999px; padding: 10px 16px;
+  font: 600 .8rem/1 var(--body); cursor: pointer; overflow: hidden;
+  transition: transform .3s var(--ease), background .3s, border-color .3s;
+}
+.copy:hover { transform: scale(1.04); }
+.copy:active { transform: scale(.96); }
+.copy .ok { display: none; }
+.copy.done { background: var(--olive); border-color: var(--olive); }
+.copy.done .ok { display: inline-flex; }
+.copy.done .idle { display: none; }
+.check path { stroke-dasharray: 22; stroke-dashoffset: 22; }
+.copy.done .check path { animation: draw .45s var(--ease) .05s forwards; }
+.copy.done { animation: thump .45s var(--ease); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes thump { 40% { transform: scale(1.08); } }
+.burst { position: absolute; inset: 0; pointer-events: none; }
+.burst i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: var(--nude); animation: burst .7s var(--ease) forwards; }
+@keyframes burst { from { transform: translate(-50%,-50%) scale(1); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(.2); opacity: 0; } }
+.note { margin-top: 22px; font-size: .82rem; color: var(--muted); }
+
+/* ---------- Sobre ---------- */
+.about-grid { display: grid; gap: clamp(32px, 6vw, 80px); }
+@media (min-width: 900px) { .about-grid { grid-template-columns: .9fr 1.1fr; align-items: start; } }
+.about-text { display: grid; gap: 18px; font-size: 1.05rem; max-width: 60ch; min-width: 0; }
+.about-text .pull { font-family: var(--display); font-style: italic; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.2; color: var(--ink); }
+.about-text p { color: var(--muted); }
+.signature { font-family: var(--display); font-style: italic; font-size: 2rem; color: var(--olive); }
+.rings { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 10px; }
+.ring {
+  display: grid; justify-items: center; gap: 10px; text-align: center; padding: 18px 10px 20px;
+  border-radius: 18px; border: 1px solid transparent; background: transparent; cursor: pointer; color: var(--ink); font: inherit;
+  transition: background .35s, border-color .35s, transform .35s var(--ease);
+}
+.ring:hover, .ring[aria-expanded="true"] { background: var(--paper); border-color: var(--line); transform: translateY(-4px); }
+.ring .halo { width: 76px; height: 76px; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, var(--olive), var(--nude), var(--olive)); transition: transform .5s var(--ease); }
+.ring:hover .halo { transform: rotate(18deg) scale(1.05); }
+.ring .halo span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--surface); border: 3px solid var(--bg); font-size: 2rem; }
+.ring b { font-weight: 600; font-size: .95rem; }
+.ring small { color: var(--muted); font-size: .82rem; line-height: 1.45; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .35s; }
+.ring:hover small, .ring[aria-expanded="true"] small { max-height: 8em; opacity: 1; }
+@media (hover: none) { .ring small { max-height: 8em; opacity: 1; } }
+
+/* ---------- Feed ---------- */
+.feed-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+.slider-wrap { position: relative; margin-bottom: 36px; }
+.slider { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 280px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; overscroll-behavior-x: contain; }
+.slider::-webkit-scrollbar { display: none; }
+.reel { scroll-snap-align: start; position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 18px; overflow: hidden; background: var(--surface); }
+.reel .bg, .post .bg { position: absolute; inset: 0; transition: transform .8s var(--ease); }
+.reel:hover .bg, .post:hover .bg { transform: scale(1.08); }
+.reel .meta { position: absolute; inset: auto 0 0; padding: 18px; display: grid; gap: 4px; color: #FBF8F3; background: linear-gradient(transparent, rgba(20,18,14,.72)); }
+.reel .meta b { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 1.4rem; line-height: 1.1; }
+.reel .meta small { font-family: var(--mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.reel .play { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(251,248,243,.88); color: #1D1A16; }
+.slider-ctrl { display: flex; gap: 8px; align-items: center; }
+.round { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: background .25s, color .25s, transform .3s var(--ease); }
+.round:hover { background: var(--ink); color: var(--bg); transform: scale(1.06); }
+.dots { display: flex; gap: 6px; margin-right: 10px; }
+.dots i { width: 6px; height: 6px; border-radius: 99px; background: var(--line); transition: width .4s var(--ease), background .3s; }
+.dots i.on { width: 22px; background: var(--ink); }
+.grid { display: grid; gap: 6px; grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 720px) { .grid { gap: 12px; } }
+.post { position: relative; aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; border-radius: 10px; background: var(--surface); }
+.post .over { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 10px; background: color-mix(in srgb, var(--ink) 55%, transparent); color: #FBF8F3; opacity: 0; transition: opacity .35s; }
+.post:hover .over, .post:focus-within .over { opacity: 1; }
+.post .over b { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(1rem, 2.2vw, 1.4rem); }
+.post .lbl { position: absolute; left: 10px; bottom: 10px; font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: color-mix(in srgb, var(--paper) 85%, transparent); padding: 4px 7px; border-radius: 6px; }
+@media (max-width: 520px) { .post .lbl { display: none; } }
+/* placeholders de foto em tons da paleta */
+.t1 { background: linear-gradient(160deg, var(--nude), var(--olive-soft)); }
+.t2 { background: radial-gradient(90% 80% at 70% 20%, var(--paper), var(--surface)); }
+.t3 { background: linear-gradient(200deg, var(--olive), var(--nude)); }
+.t4 { background: linear-gradient(140deg, var(--surface), var(--nude)); }
+.t5 { background: radial-gradient(80% 90% at 20% 80%, var(--nude), var(--paper)); }
+.t6 { background: linear-gradient(180deg, var(--olive-soft), var(--surface)); }
+.bg .glyph { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(1.6rem, 5vw, 3rem); opacity: .55; }
+
+/* ---------- Contato ---------- */
+.contact-grid { display: grid; gap: clamp(28px, 5vw, 64px); }
+@media (min-width: 940px) { .contact-grid { grid-template-columns: .85fr 1.15fr; } }
+.kit { display: grid; gap: 22px; align-content: start; min-width: 0; }
+.kit-stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.kit-stats div { padding: 18px 14px; display: grid; gap: 4px; }
+.kit-stats div + div { border-left: 1px solid var(--line); }
+.kit-stats b { font-family: var(--display); font-weight: 400; font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.kit-stats small { font-family: var(--mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.direct { display: grid; gap: 10px; }
+.direct-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.direct-row .val { font-family: var(--mono); font-size: .9rem; word-break: break-all; min-width: 0; }
+.direct-row .val small { display: block; font-family: var(--body); font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+.mini { border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 600 .78rem/1 var(--body); cursor: pointer; text-decoration: none; transition: background .25s, color .25s; }
+.mini:hover { background: var(--ink); color: var(--bg); }
+form.card { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: clamp(20px, 4vw, 36px); display: grid; gap: 16px; }
+.row2 { display: grid; gap: 16px; }
+@media (min-width: 620px) { .row2 { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font-size: .8rem; font-weight: 600; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  font: 400 .95rem/1.4 var(--body); transition: border-color .25s, box-shadow .25s;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 4px color-mix(in srgb, var(--olive) 18%, transparent); }
+.field .err { font-size: .76rem; color: #A3442F; min-height: 1em; }
+.field.bad input, .field.bad select, .field.bad textarea { border-color: #A3442F; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: .84rem; color: var(--muted); }
+.consent input { margin-top: 4px; accent-color: var(--olive); width: 16px; height: 16px; flex: none; }
+.captcha { display: flex; align-items: center; gap: 12px; border: 1px dashed var(--line); border-radius: 12px; padding: 12px 14px; font-size: .8rem; color: var(--muted); }
+.captcha .shield { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--olive-soft); color: var(--olive); flex: none; }
+.form-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.status { font-size: .86rem; color: var(--olive); min-height: 1.2em; }
+
+/* ---------- Footer ---------- */
+footer { background: var(--ink); color: var(--bg); padding-block: 64px 28px; }
+.foot-grid { display: grid; gap: 36px; }
+@media (min-width: 820px) { .foot-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+.foot-name { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 4rem); line-height: .95; }
+.foot-name em { color: var(--nude); }
+footer .eyebrow { color: color-mix(in srgb, var(--bg) 60%, transparent); margin-bottom: 12px; display: block; }
+footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: .92rem; }
+footer a, footer button.linky { color: color-mix(in srgb, var(--bg) 82%, transparent); text-decoration: none; transition: color .25s; }
+footer a:hover, footer button.linky:hover { color: var(--nude); }
+button.linky { background: none; border: 0; padding: 0; font: inherit; cursor: pointer; text-align: left; }
+.socials { display: flex; gap: 10px; margin-top: 20px; }
+.socials a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--bg) 25%, transparent); display: grid; place-items: center; transition: transform .4s var(--ease), background .3s, color .3s; }
+.socials a:hover { transform: translateY(-4px) rotate(-8deg); background: var(--nude); color: var(--ink); border-color: var(--nude); }
+.legal { margin-top: 48px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: .78rem; color: color-mix(in srgb, var(--bg) 55%, transparent); }
+
+/* ---------- Toast, cookies, dialogs ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 80;
+  transform: translate(-50%, 140%); display: inline-flex; gap: 10px; align-items: center;
+  background: var(--ink); color: var(--bg); padding: 12px 18px; border-radius: 999px; font-size: .88rem; font-weight: 600;
+  box-shadow: 0 20px 40px -18px rgba(0,0,0,.5); opacity: 0; visibility: hidden; transition: transform .5s var(--ease), opacity .3s, visibility .5s;
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; transition: transform .5s var(--ease), opacity .3s; }
+.toast .badge { width: 22px; height: 22px; border-radius: 50%; background: var(--olive); display: grid; place-items: center; color: var(--bg); }
+.cookie {
+  position: fixed; z-index: 70; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px)); max-width: 560px; margin-left: auto;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: var(--shadow);
+  display: grid; gap: 12px; font-size: .86rem; animation: rise .6s var(--ease) both;
+}
+.cookie p { color: var(--muted); }
+.cookie .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.cookie .prefs { display: grid; gap: 8px; padding: 12px; border-radius: 12px; background: var(--bg); }
+.cookie .prefs label { display: flex; gap: 10px; align-items: center; }
+.cookie .prefs input { accent-color: var(--olive); }
+dialog { border: 1px solid var(--line); border-radius: 20px; padding: 0; max-width: min(640px, calc(100% - 32px)); background: var(--paper); color: var(--ink); }
+dialog::backdrop { background: rgba(20,18,14,.5); backdrop-filter: blur(3px); }
+dialog .dlg { padding: clamp(20px, 4vw, 34px); display: grid; gap: 12px; max-height: 80vh; overflow-y: auto; font-size: .92rem; }
+dialog h3 { font-size: 2rem; }
+dialog h4 { margin: 10px 0 0; font-size: .95rem; }
+dialog p, dialog li { color: var(--muted); }
+dialog ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+
+.coupons { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.ticket h3 a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s var(--ease); }
+.ticket h3 a:hover { background-size: 100% 1px; }
+.visit { font-size: .76rem; font-weight: 600; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
+.visit:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.say { font-size: .86rem; font-weight: 600; line-height: 1.3; min-width: 0; }
+.say small { display: block; font-family: var(--mono); font-weight: 400; font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ticket-stub { flex-wrap: wrap; }
+
+.arch img { position: absolute; inset: 0; }
+img.bg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.grid { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 820px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+.post { aspect-ratio: 3 / 4.4; }
+.post .lbl { display: block; }
+.about-photo { margin: 0; position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 5 / 4; max-width: 100%; box-shadow: var(--shadow); }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; display: block; transition: transform 1.2s var(--ease); }
+.about-photo:hover img { transform: scale(1.05); }
+.about-photo figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 10px 14px; border-radius: 12px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); font-size: .82rem; }
+
+.partners-head { margin-top: clamp(48px, 7vw, 80px); margin-bottom: 22px; display: grid; gap: 10px; }
+.partners-head h3 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+.partners-head h3 em { font-style: italic; color: var(--olive); }
+.partners { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.partner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); text-decoration: none; color: var(--ink); min-width: 0; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s var(--ease); }
+a.partner:hover { transform: translateY(-4px); border-color: var(--nude); box-shadow: var(--shadow); }
+.partner .avatar { flex: none; width: 52px; height: 52px; border-radius: 50%; padding: 2px; background: conic-gradient(from 200deg, var(--olive), var(--nude), var(--olive)); transition: transform .5s var(--ease); }
+a.partner:hover .avatar { transform: rotate(18deg); }
+.partner .avatar span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--surface); border: 2px solid var(--paper); font-family: var(--display); font-style: italic; font-size: 1.4rem; }
+.pinfo { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.pinfo .cat { font-size: .62rem; }
+.pinfo b { font-weight: 600; font-size: .98rem; line-height: 1.25; }
+.pinfo small { color: var(--muted); font-size: .8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.partner .go { font-size: 1rem; color: var(--muted); transition: transform .35s var(--ease), color .3s; }
+a.partner:hover .go { transform: translate(3px, -3px); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .reveal { animation: none !important; }
+}
+</style>
+
+<style>:root{color-scheme:light}body{margin:0}</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mono-mark" href="#topo" aria-label="Sabrina Coutinho, início">Sc.</a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#cupons">Cupons</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#feed">Feed</a>
+      <a href="#contato">Parcerias</a>
+    </nav>
+    <a class="btn" href="#contato">Mídia Kit <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</header>
+
+<main id="topo">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy intro">
+        <p class="eyebrow">Brasília — DF · Criadora de conteúdo</p>
+        <h1><span>Sabrina</span><span class="l2">Coutinho</span></h1>
+        <a class="handle" href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer"><i class="dot" aria-hidden="true"></i>@sabrinaa.coutinho</a>
+        <p class="rotator" aria-live="polite">Mostrando minha rotina de <span class="word" id="word">mãe</span></p>
+        <p class="subline"><span>Mãe • Fitness • Moda • Lifestyle</span><span>Atleta Híbrida em Construção</span><span>Brasília - DF</span></p>
+        <div class="hero-ctas">
+          <a class="btn" href="#contato">Trabalhe Comigo / Mídia Kit <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#cupons">Ver Cupons Exclusivos</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>6.280+</b><small>seguidores</small></div>
+          <div><b>5</b><small>pilares de conteúdo</small></div>
+          <div><b>DF</b><small>base em Brasília</small></div>
+        </div>
+      </div>
+
+      <figure class="portrait" style="margin:0">
+        <div class="arch">
+          <img src="fotos/sabrina-hero.jpg" alt="Sabrina Coutinho sorrindo, segurando uma taça de drink" style="object-position:50% 22%" fetchpriority="high">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Treinos</span><span>Estilo</span><span>Maternidade</span><span>Receitas</span><span>Viagens</span><span>Rotina</span><span>Evolução</span>
+      <span>Treinos</span><span>Estilo</span><span>Maternidade</span><span>Receitas</span><span>Viagens</span><span>Rotina</span><span>Evolução</span>
+    </div>
+  </div>
+
+  <!-- CUPONS -->
+  <section id="cupons">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Cupons & parcerias</p>
+        <h2>O que eu uso, <em>com desconto</em> pra você</h2>
+        <p class="lede">Só indico marca que entrou na minha rotina de verdade. Toque em copiar e mande a mensagem pro parceiro: o desconto é seu.</p>
+      </div>
+      <div class="coupons" id="coupons"></div>
+      <p class="note">Os descontos são oferecidos pelos parceiros e podem mudar. Confirme as condições direto com cada um.</p>
+      <div class="partners-head reveal">
+        <p class="eyebrow">Também indico</p>
+        <h3>Marcas e profissionais <em>que eu confio</em></h3>
+      </div>
+      <div class="partners" id="partners"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" style="background:var(--surface)">
+    <div class="wrap about-grid">
+      <div class="about-text reveal">
+        <p class="eyebrow">Quem sou eu</p>
+        <h2>Prazer, <em>Sabrina</em></h2>
+        <p class="pull">Mãe primeiro. Atleta em construção. Estilo no meio do caminho.</p>
+        <p>Sou de Brasília e divido aqui a vida como ela é: acordar cedo pra treinar antes da casa acordar, encaixar a corrida entre a escola e o trabalho, montar um look que funcione do treino ao almoço e cozinhar algo gostoso que também alimente.</p>
+        <p>Virei atleta híbrida aos poucos, misturando força e corrida, e ainda estou no processo. Por isso mostro a evolução sem filtro de perfeição: os dias bons, os cansados e o que eu aprendi no meio.</p>
+        <p>Se você também está tentando equilibrar maternidade, treino e vaidade, aqui é o seu lugar.</p>
+        <span class="signature">Sabrina</span>
+      </div>
+      <div class="reveal">
+        <figure class="about-photo">
+          <img src="fotos/corrida-chuva.jpg" alt="Sabrina correndo na chuva durante uma prova, fazendo sinal de paz" loading="lazy">
+          <figcaption>Prova na chuva, sorriso no rosto: a atleta híbrida em construção.</figcaption>
+        </figure>
+        <p class="eyebrow" style="margin:28px 0 18px">Meus destaques · toque para abrir</p>
+        <div class="rings" id="rings">
+          <button class="ring" aria-expanded="false"><span class="halo"><span>🏋️‍♂️</span></span><b>Treinos</b><small>Força, corrida e a construção de uma atleta híbrida, semana a semana.</small></button>
+          <button class="ring" aria-expanded="false"><span class="halo"><span>✨</span></span><b>Estilo</b><small>Looks reais: do treino ao jantar, com peças que repito sem culpa.</small></button>
+          <button class="ring" aria-expanded="false"><span class="halo"><span>👶</span></span><b>Maternidade</b><small>A rotina de mãe sem romantizar, com muito afeto e alguma bagunça.</small></button>
+          <button class="ring" aria-expanded="false"><span class="halo"><span>🥗</span></span><b>Receitas</b><small>Comida prática e nutritiva que a família inteira come.</small></button>
+          <button class="ring" aria-expanded="false"><span class="halo"><span>✈️</span></span><b>Viagens</b><small>Roteiros, malas inteligentes e treinos fora de casa.</small></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEED -->
+  <section id="feed">
+    <div class="wrap">
+      <div class="sec-head feed-head reveal">
+        <div style="display:grid;gap:14px">
+          <p class="eyebrow">Feed</p>
+          <h2>Rotina, estilo <em>e evolução</em></h2>
+        </div>
+      </div>
+      <div class="grid reveal">
+        <a class="post" href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer"><img class="bg" src="fotos/bmw-life.jpg" alt="Sabrina em evento da BMW Life" loading="lazy" style="object-position:50% 30%"><span class="lbl">Parcerias</span><span class="over"><b>Evento BMW Life</b></span></a>
+        <a class="post" href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer"><img class="bg" src="fotos/look-garagem-beer.jpg" alt="Sabrina de vestido amarelo na Garagem Beer" loading="lazy" style="object-position:50% 35%"><span class="lbl">Look</span><span class="over"><b>Noite na Garagem Beer</b></span></a>
+        <a class="post" href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer"><img class="bg" src="fotos/look-noite.jpg" alt="Sabrina com corset vinho e calça marrom" loading="lazy" style="object-position:50% 30%"><span class="lbl">Look</span><span class="over"><b>Look da noite</b></span></a>
+        <a class="post" href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer"><img class="bg" src="fotos/viagem.jpg" alt="Sabrina olhando pela janela durante uma viagem" loading="lazy" style="object-position:50% 30%"><span class="lbl">Viagens</span><span class="over"><b>Pé na estrada</b></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" style="background:var(--surface)">
+    <div class="wrap contact-grid">
+      <div class="kit reveal">
+        <p class="eyebrow">Parcerias & mídia kit</p>
+        <h2>Vamos criar <em>juntos</em>?</h2>
+        <p class="lede">Conteúdo autêntico para marcas de fitness, moda, beleza, gastronomia e lifestyle, com uma audiência de Brasília que acompanha a minha rotina de perto.</p>
+        <div class="kit-stats">
+          <div><b>6.280+</b><small>Seguidores</small></div>
+          <div><b>BSB</b><small>Público local</small></div>
+          <div><b>5</b><small>Pilares</small></div>
+        </div>
+        <div class="direct">
+          <div class="direct-row">
+            <span class="val"><small>WhatsApp da assessoria</small><span id="phone">carregando…</span></span>
+            <span style="display:flex;gap:8px"><a class="mini" id="wa" href="#" target="_blank" rel="noopener noreferrer">Abrir WhatsApp</a><button class="mini" data-copy="phone">Copiar</button></span>
+          </div>
+          <div class="direct-row">
+            <span class="val"><small>E-mail comercial</small><span id="mail">carregando…</span></span>
+            <button class="mini" data-copy="mail">Copiar e-mail</button>
+          </div>
+        </div>
+      </div>
+
+      <form class="card reveal" id="form" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" maxlength="80" placeholder="Ex.: Mariana Lopes"><span class="err"></span></div>
+          <div class="field"><label for="f-marca">Marca / empresa</label><input id="f-marca" name="marca" autocomplete="organization" maxlength="80" placeholder="Ex.: Studio Bem-Estar"><span class="err"></span></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="voce@marca.com.br"><span class="err"></span></div>
+          <div class="field"><label for="f-tel">WhatsApp (opcional)</label><input id="f-tel" name="telefone" type="tel" autocomplete="tel" maxlength="20" placeholder="(61) 90000-0000"><span class="err"></span></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="f-tipo">Tipo de parceria</label>
+            <select id="f-tipo" name="tipo"><option value="">Selecione</option><option>Publi no feed / Reels</option><option>Stories</option><option>Cupom de desconto</option><option>Evento / experiência</option><option>Embaixadora de marca</option></select><span class="err"></span></div>
+          <div class="field"><label for="f-orc">Orçamento estimado</label>
+            <select id="f-orc" name="orcamento"><option value="">Prefiro conversar</option><option>Até R$ 1.000</option><option>R$ 1.000 a R$ 3.000</option><option>Acima de R$ 3.000</option><option>Permuta</option></select><span class="err"></span></div>
+        </div>
+        <div class="field"><label for="f-msg">Conte sobre a proposta</label><textarea id="f-msg" name="mensagem" maxlength="1500" placeholder="Produto, objetivo da campanha, prazos e entregáveis."></textarea><span class="err"></span></div>
+        <div class="hp" aria-hidden="true"><label for="f-site">Não preencha</label><input id="f-site" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="consent"><input type="checkbox" id="f-lgpd"><span>Concordo que meus dados sejam usados apenas para responder a esta proposta, conforme a <button type="button" class="linky" data-open="dlg-priv" style="color:var(--olive);text-decoration:underline">Política de Privacidade</button>.</span></label>
+        <div class="captcha"><span class="shield" aria-hidden="true">✓</span><span>Ao enviar, o WhatsApp da assessoria abre com a sua proposta já escrita. Seus dados não ficam guardados neste site.</span></div>
+        <div class="form-foot">
+          <p class="status" id="status" role="status"></p>
+          <button class="btn olive" type="submit">Enviar pelo WhatsApp <span class="arrow" aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-name">Sabrina<br><em>Coutinho</em></p>
+        <div class="socials">
+          <a href="https://instagram.com/sabrinaa.coutinho" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a id="wa2" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/><path d="M9 9.5c.3 2.2 2.3 4.3 4.5 4.6l1-1.1 1.8.8"/></svg></a>
+          <a href="https://linktr.ee/sabrinacoutinho" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow">Navegue</span>
+        <ul><li><a href="#cupons">Cupons exclusivos</a></li><li><a href="#sobre">Sobre a Sabrina</a></li><li><a href="#feed">Feed</a></li><li><a href="#contato">Parcerias & mídia kit</a></li></ul>
+      </div>
+      <div>
+        <span class="eyebrow">Privacidade</span>
+        <ul>
+          <li><button class="linky" data-open="dlg-priv">Política de Privacidade</button></li>
+          <li><button class="linky" data-open="dlg-terms">Termos de Uso</button></li>
+          <li><button class="linky" id="reopen-cookies">Preferências de cookies</button></li>
+          <li style="color:color-mix(in srgb,var(--bg) 60%,transparent)">Brasília - DF</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 Sabrina Coutinho. Todos os direitos reservados. Fotos e conteúdo protegidos por direitos autorais.</span><span>Dados tratados conforme a LGPD (Lei 13.709/2018)</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><span id="toast-txt">Copiado com sucesso!</span></div>
+
+<div class="cookie" id="cookie" hidden>
+  <b>Sua privacidade importa 🤍</b>
+  <p>Uso cookies essenciais para o site funcionar e, só com a sua permissão, cookies de medição para entender quais conteúdos ajudam mais. Você decide e pode mudar quando quiser.</p>
+  <div class="prefs" id="prefs" hidden>
+    <label><input type="checkbox" checked disabled> Essenciais (sempre ativos)</label>
+    <label><input type="checkbox" id="c-analytics"> Medição de audiência</label>
+    <label><input type="checkbox" id="c-marketing"> Marketing e parceiros</label>
+  </div>
+  <div class="acts">
+    <button class="btn" style="padding:11px 18px" id="c-all">Aceitar todos</button>
+    <button class="btn ghost" style="padding:11px 18px" id="c-none">Só essenciais</button>
+    <button class="mini" id="c-custom">Personalizar</button>
+  </div>
+</div>
+
+<dialog id="dlg-priv"><div class="dlg">
+  <p class="eyebrow">LGPD · Lei 13.709/2018</p>
+  <h3>Política de Privacidade</h3>
+  <p>Este site pertence a Sabrina Coutinho, criadora de conteúdo em Brasília - DF, que é a controladora dos dados coletados aqui.</p>
+  <h4>Quais dados coletamos</h4>
+  <ul><li>No formulário de parcerias: nome, marca, e-mail, telefone (opcional) e a mensagem. Eles não ficam guardados neste site: ao enviar, seguem direto para o WhatsApp da assessoria.</li><li>Cookies de medição e marketing apenas se você autorizar.</li></ul>
+  <h4>Para que usamos</h4>
+  <p>Exclusivamente para responder propostas comerciais e proteger o site. Não vendemos nem compartilhamos seus dados com terceiros para fins próprios deles.</p>
+  <h4>Como protegemos</h4>
+  <p>O site usa conexão criptografada (HTTPS) e não tem banco de dados: nenhum dado do formulário é armazenado aqui. As conversas pelo WhatsApp seguem a criptografia de ponta a ponta do aplicativo, e as propostas são apagadas pela assessoria após 12 meses.</p>
+  <h4>Seus direitos</h4>
+  <p>Você pode pedir acesso, correção, portabilidade ou exclusão dos seus dados e revogar o consentimento a qualquer momento pelo e-mail comercial informado na seção de contato.</p>
+  <p style="font-size:.8rem">Modelo para o protótipo. Revise com assessoria jurídica antes de publicar.</p>
+  <form method="dialog"><button class="btn">Fechar</button></form>
+</div></dialog>
+
+<dialog id="dlg-terms"><div class="dlg">
+  <p class="eyebrow">Termos</p>
+  <h3>Termos de Uso</h3>
+  <p>Ao navegar neste site você concorda com estes termos.</p>
+  <h4>Conteúdo</h4>
+  <p>Textos, fotos e vídeos são de autoria de Sabrina Coutinho ou usados com autorização. Reprodução só com permissão por escrito.</p>
+  <h4>Cupons</h4>
+  <p>Os cupons são oferecidos pelas marcas parceiras, que definem validade, regras e disponibilidade. Confira as condições no site ou loja de cada parceiro.</p>
+  <h4>Publicidade</h4>
+  <p>Conteúdos patrocinados são sempre sinalizados, seguindo o Guia de Publicidade por Influenciadores do CONAR.</p>
+  <form method="dialog"><button class="btn">Fechar</button></form>
+</div></dialog>
+<script>
+(() => {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch { /* sem storage */ } }
+  };
+
+  /* ---------- Nav ---------- */
+  const nav = $("#nav");
+  const onScroll = () => nav.classList.toggle("scrolled", scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  /* ---------- Subtítulo dinâmico ---------- */
+  const words = ["mãe", "fitness", "moda", "lifestyle", "evolução"];
+  const w = $("#word"); let wi = 0;
+  setInterval(() => {
+    w.classList.add("out");
+    setTimeout(() => { wi = (wi + 1) % words.length; w.textContent = words[wi]; w.classList.remove("out"); }, 350);
+  }, 2400);
+
+  /* ---------- Toast ---------- */
+  const toast = $("#toast"); let tt;
+  function showToast(msg) {
+    $("#toast-txt").textContent = msg;
+    toast.classList.add("show"); clearTimeout(tt);
+    tt = setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  /* ---------- Clipboard com fallback ---------- */
+  async function copyText(text, selectEl) {
+    try { await navigator.clipboard.writeText(text); return true; }
+    catch {
+      if (selectEl) { const r = document.createRange(); r.selectNodeContents(selectEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      return false;
+    }
+  }
+
+  /* ---------- Cupons ---------- */
+  // url: Instagram ou site do parceiro (preencher). code: deixe "" se o desconto é só falar que veio pela Sabrina.
+  const COUPONS = [
+    { label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção", code: "", url: "https://www.instagram.com/studiopamelacosta_/" },
+    { label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto", code: "", url: "https://www.instagram.com/velumeestetica/" },
+    { label: "Studio", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto", code: "", url: "https://www.instagram.com/nx3dstudio/" }
+  ];
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const safeUrl = u => /^https:\/\//.test(u || "") ? u : "";
+  const check = '<svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>';
+  const phrase = c => c.code || `Oi! Vim pela @sabrinaa.coutinho e quero meu desconto de ${c.benefit} 🤍`;
+  $("#coupons").innerHTML = COUPONS.map(c => {
+    const url = safeUrl(c.url);
+    const val = phrase(c);
+    return `
+    <article class="ticket">
+      <div class="ticket-body">
+        <div class="ticket-top"><span class="cat">${esc(c.label)}</span>${url ? `<a class="visit" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Ver perfil ↗</a>` : ""}</div>
+        <h3>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(c.partner)}</a>` : esc(c.partner)}</h3>
+        <p>${esc(c.desc)}</p>
+        <p class="benefit">${esc(c.benefit)}<small>${esc(c.unit)}</small></p>
+      </div>
+      <div class="ticket-stub">
+        ${c.code ? `<span class="code">${esc(c.code)}</span>` : `<span class="say"><small>Para usar</small>Diga que veio pela Sabrina</span>`}
+        <button class="copy" data-code="${esc(val)}" data-kind="${c.code ? "cupom" : "msg"}" aria-label="${c.code ? "Copiar cupom " + esc(c.code) : "Copiar mensagem para " + esc(c.partner)}">
+          <span class="idle">${c.code ? "Copiar cupom" : "Copiar mensagem"}</span><span class="ok">${check} Copiado!</span><span class="burst" aria-hidden="true"></span>
+        </button>
+      </div>
+    </article>`;
+  }).join("");
+
+  const PARTNERS = [
+    { name: "Kordial Store", handle: "kordial.store", label: "Loja", desc: "Uma das lojas que fazem parte do meu dia a dia." },
+    { name: "Gaby Bronze", handle: "gabybronze", label: "Bronzeamento", desc: "Bronze bonito e natural, do jeitinho que eu gosto." },
+    { name: "Samantha Medeiros Beauty", handle: "samanthamedeirosbeauty", label: "Beleza", desc: "Cuidados de beleza com quem eu confio." },
+    { name: "Jefferson Maciel", handle: "ojeffersonmaciel", label: "Parceiro", desc: "Profissional que eu indico de olhos fechados." },
+    { name: "Andressa Silva", handle: "andressasilva_lisoespelhado", label: "Liso espelhado", desc: "Cabelo liso com brilho e movimento de verdade." },
+    { name: "Patrão Hortifruti", handle: "patraohortifruti", label: "Hortifruti", desc: "Frutas, verduras e legumes fresquinhos pra cozinha da semana." },
+    { name: "Garagem Beer", handle: "", label: "Gastronomia & Lazer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos." }
+  ];
+  $("#partners").innerHTML = PARTNERS.map(p => {
+    const url = p.handle ? `https://www.instagram.com/${encodeURIComponent(p.handle)}/` : "";
+    const inner = `<span class="avatar" aria-hidden="true"><span>${esc(p.name.charAt(0))}</span></span>
+      <span class="pinfo"><span class="cat">${esc(p.label)}</span><b>${esc(p.name)}</b><small>${p.handle ? "@" + esc(p.handle) : esc(p.desc)}</small></span>
+      ${url ? '<span class="go" aria-hidden="true">↗</span>' : ""}`;
+    return url ? `<a class="partner" href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="${esc(p.desc)}">${inner}</a>` : `<div class="partner">${inner}</div>`;
+  }).join("");
+
+  $("#coupons").addEventListener("click", async e => {
+    const btn = e.target.closest(".copy"); if (!btn) return;
+    const code = btn.dataset.code;
+    const ok = await copyText(code, btn.closest(".ticket").querySelector(".code, .say"));
+    btn.classList.remove("done"); void btn.offsetWidth; btn.classList.add("done");
+    const burst = btn.querySelector(".burst"); burst.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+      const a = (Math.PI * 2 * i) / 10, d = 34 + Math.random() * 16, dot = document.createElement("i");
+      dot.style.setProperty("--x", Math.cos(a) * d + "px"); dot.style.setProperty("--y", Math.sin(a) * d + "px");
+      burst.appendChild(dot);
+    }
+    const msg = btn.dataset.kind === "cupom" ? `Cupom ${code} copiado com sucesso!` : "Mensagem copiada! É só colar no direct ou no WhatsApp";
+    showToast(ok ? msg : "Selecione o texto e use Copiar");
+    clearTimeout(btn._t); btn._t = setTimeout(() => btn.classList.remove("done"), 2600);
+  });
+
+  /* ---------- Destaques (anéis) ---------- */
+  $$(".ring").forEach(r => r.addEventListener("click", () => {
+    const open = r.getAttribute("aria-expanded") === "true";
+    $$(".ring").forEach(x => x.setAttribute("aria-expanded", "false"));
+    r.setAttribute("aria-expanded", String(!open));
+  }));
+
+  /* ---------- Contatos ofuscados (montados só no navegador) ---------- */
+  const rev = s => s.split("").reverse().join("");
+  const mail = rev("cs" + "anirbasue" + "airosesssa") + "@" + rev("moc.liamg");
+  const phoneDigits = ["55", "61", "99651", "1849"];
+  const phone = `(${phoneDigits[1]}) ${phoneDigits[2]}-${phoneDigits[3]}`;
+  $("#mail").textContent = mail; $("#phone").textContent = phone;
+  const wa = `https://wa.me/${phoneDigits.join("")}?text=${encodeURIComponent("Olá, Sabrina! Vim pelo seu site e gostaria de falar sobre uma parceria.")}`;
+  $("#wa").href = wa; $("#wa2").href = wa;
+  $$("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+    const isMail = b.dataset.copy === "mail";
+    const ok = await copyText(isMail ? mail : phone, $(isMail ? "#mail" : "#phone"));
+    showToast(ok ? (isMail ? "E-mail copiado com sucesso!" : "Telefone copiado com sucesso!") : "Texto selecionado: use Copiar");
+  }));
+
+  /* ---------- Formulário com validação + honeypot ---------- */
+  const form = $("#form"); const started = Date.now();
+  const clean = v => v.replace(/[<>]/g, "").replace(/\s+/g, " ").trim();
+  const rules = {
+    "f-nome": v => v.length >= 2 || "Informe seu nome.",
+    "f-marca": v => v.length >= 2 || "Informe a marca ou empresa.",
+    "f-email": v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || "Use um e-mail válido, como voce@marca.com.br.",
+    "f-tel": v => !v || v.replace(/\D/g, "").length >= 10 || "Inclua o DDD, ex.: (61) 90000-0000.",
+    "f-tipo": v => !!v || "Escolha o tipo de parceria.",
+    "f-msg": v => v.length >= 20 || "Conte um pouco mais (mínimo de 20 caracteres)."
+  };
+  const validate = id => {
+    const el = $("#" + id), res = rules[id](clean(el.value)), f = el.closest(".field");
+    f.classList.toggle("bad", res !== true); f.querySelector(".err").textContent = res === true ? "" : res;
+    return res === true;
+  };
+  Object.keys(rules).forEach(id => $("#" + id).addEventListener("blur", () => validate(id)));
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const status = $("#status");
+    if ($("#f-site").value || Date.now() - started < 3000) { status.textContent = "Não foi possível enviar. Tente de novo em alguns segundos."; return; }
+    const ok = Object.keys(rules).map(validate).every(Boolean);
+    if (!ok) { status.style.color = "#A3442F"; status.textContent = "Revise os campos destacados."; return; }
+    if (!$("#f-lgpd").checked) { status.style.color = "#A3442F"; status.textContent = "Marque o consentimento da LGPD para continuar."; return; }
+    const v = id => clean($("#" + id).value);
+    const linhas = [
+      "Olá, Sabrina! Tenho uma proposta de parceria 🤍", "",
+      `*Nome:* ${v("f-nome")}`, `*Marca:* ${v("f-marca")}`, `*E-mail:* ${v("f-email")}`,
+      v("f-tel") ? `*WhatsApp:* ${v("f-tel")}` : "",
+      `*Tipo:* ${v("f-tipo")}`, `*Orçamento:* ${v("f-orc") || "Prefiro conversar"}`, "",
+      `*Proposta:* ${v("f-msg")}`
+    ].filter((l, i, a) => l !== "" || a[i - 1] !== "");
+    const url = `https://wa.me/${phoneDigits.join("")}?text=${encodeURIComponent(linhas.join("\n"))}`;
+    const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    document.body.appendChild(a); a.click(); a.remove();
+    status.style.color = ""; status.textContent = "Abrimos o WhatsApp com a sua proposta pronta. É só tocar em enviar.";
+    showToast("Proposta pronta no WhatsApp");
+  });
+
+  /* ---------- Dialogs ---------- */
+  $$("[data-open]").forEach(b => b.addEventListener("click", () => $("#" + b.dataset.open).showModal()));
+
+  /* ---------- Cookies LGPD ---------- */
+  const cookie = $("#cookie");
+  const saveConsent = c => { store.set("sc-consent", JSON.stringify({ ...c, at: new Date().toISOString() })); cookie.hidden = true; showToast("Preferências salvas"); };
+  if (!store.get("sc-consent")) cookie.hidden = false;
+  $("#c-all").onclick = () => saveConsent({ analytics: true, marketing: true });
+  $("#c-none").onclick = () => saveConsent({ analytics: false, marketing: false });
+  $("#c-custom").onclick = () => {
+    const p = $("#prefs");
+    if (p.hidden) { p.hidden = false; $("#c-custom").textContent = "Salvar escolhas"; }
+    else saveConsent({ analytics: $("#c-analytics").checked, marketing: $("#c-marketing").checked });
+  };
+  $("#reopen-cookies").onclick = () => { cookie.hidden = false; };
+})();
+</script>
+</body>
+</html>

@@ -43,7 +43,13 @@ npm test                        # testes de criptografia e sanitização
 
 Sem `NEXT_PUBLIC_TURNSTILE_SITE_KEY` e sem Upstash, o projeto roda em modo de desenvolvimento (Turnstile simulado, rate limit em memória).
 
-## Publicar
+## Site no ar (GitHub Pages)
+
+A pasta `estatico/` é a versão do site que roda sem servidor: mesmo visual, fotos em `estatico/fotos/`, e o formulário de parcerias abre o WhatsApp da assessoria com a proposta já escrita. A cada push na `main`, o workflow `.github/workflows/pages.yml` publica essa pasta.
+
+Para ativar (uma vez só): repositório público → *Settings → Pages → Source: GitHub Actions*.
+
+## Publicar a versão completa (com backend)
 
 Vercel ou Netlify, com as variáveis de `.env.example` cadastradas no painel. O `vercel.json` agenda a limpeza diária de dados antigos. Antes de abrir ao público, siga o checklist em [`docs/SEGURANCA.md`](docs/SEGURANCA.md).
 

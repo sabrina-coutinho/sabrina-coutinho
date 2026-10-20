@@ -547,10 +547,10 @@ a.partner:hover .go { transform: translate(3px, -3px); color: var(--ink); }
         <div class="field"><label for="f-msg">Conte sobre a proposta</label><textarea id="f-msg" name="mensagem" maxlength="1500" placeholder="Produto, objetivo da campanha, prazos e entregáveis."></textarea><span class="err"></span></div>
         <div class="hp" aria-hidden="true"><label for="f-site">Não preencha</label><input id="f-site" name="website" tabindex="-1" autocomplete="off"></div>
         <label class="consent"><input type="checkbox" id="f-lgpd"><span>Concordo que meus dados sejam usados apenas para responder a esta proposta, conforme a <button type="button" class="linky" data-open="dlg-priv" style="color:var(--olive);text-decoration:underline">Política de Privacidade</button>.</span></label>
-        <div class="captcha"><span class="shield" aria-hidden="true">✓</span><span>Proteção anti-spam Cloudflare Turnstile, invisível na versão publicada. Neste protótipo, a verificação é simulada.</span></div>
+        <div class="captcha"><span class="shield" aria-hidden="true">✓</span><span>Ao enviar, o WhatsApp da assessoria abre com a sua proposta já escrita. Seus dados não ficam guardados neste site.</span></div>
         <div class="form-foot">
           <p class="status" id="status" role="status"></p>
-          <button class="btn olive" type="submit">Enviar proposta <span class="arrow" aria-hidden="true">→</span></button>
+          <button class="btn olive" type="submit">Enviar pelo WhatsApp <span class="arrow" aria-hidden="true">→</span></button>
         </div>
       </form>
     </div>
@@ -608,11 +608,11 @@ a.partner:hover .go { transform: translate(3px, -3px); color: var(--ink); }
   <h3>Política de Privacidade</h3>
   <p>Este site pertence a Sabrina Coutinho, criadora de conteúdo em Brasília - DF, que é a controladora dos dados coletados aqui.</p>
   <h4>Quais dados coletamos</h4>
-  <ul><li>No formulário de parcerias: nome, marca, e-mail, telefone (opcional) e a mensagem enviada.</li><li>Dados técnicos mínimos de segurança, como IP de forma temporária, para evitar spam e abuso.</li><li>Cookies de medição e marketing apenas se você autorizar.</li></ul>
+  <ul><li>No formulário de parcerias: nome, marca, e-mail, telefone (opcional) e a mensagem. Eles não ficam guardados neste site: ao enviar, seguem direto para o WhatsApp da assessoria.</li><li>Cookies de medição e marketing apenas se você autorizar.</li></ul>
   <h4>Para que usamos</h4>
   <p>Exclusivamente para responder propostas comerciais e proteger o site. Não vendemos nem compartilhamos seus dados com terceiros para fins próprios deles.</p>
   <h4>Como protegemos</h4>
-  <p>Conexão criptografada (HTTPS/TLS), dados sensíveis criptografados no banco (AES-256), acesso restrito à assessoria e exclusão automática de propostas após 12 meses.</p>
+  <p>O site usa conexão criptografada (HTTPS) e não tem banco de dados: nenhum dado do formulário é armazenado aqui. As conversas pelo WhatsApp seguem a criptografia de ponta a ponta do aplicativo, e as propostas são apagadas pela assessoria após 12 meses.</p>
   <h4>Seus direitos</h4>
   <p>Você pode pedir acesso, correção, portabilidade ou exclusão dos seus dados e revogar o consentimento a qualquer momento pelo e-mail comercial informado na seção de contato.</p>
   <p style="font-size:.8rem">Modelo para o protótipo. Revise com assessoria jurídica antes de publicar.</p>
@@ -780,8 +780,19 @@ a.partner:hover .go { transform: translate(3px, -3px); color: var(--ink); }
     const ok = Object.keys(rules).map(validate).every(Boolean);
     if (!ok) { status.style.color = "#A3442F"; status.textContent = "Revise os campos destacados."; return; }
     if (!$("#f-lgpd").checked) { status.style.color = "#A3442F"; status.textContent = "Marque o consentimento da LGPD para continuar."; return; }
-    status.style.color = ""; status.textContent = "Proposta validada. No protótipo nada é enviado; na versão publicada ela chega à assessoria.";
-    showToast("Proposta pronta para envio");
+    const v = id => clean($("#" + id).value);
+    const linhas = [
+      "Olá, Sabrina! Tenho uma proposta de parceria 🤍", "",
+      `*Nome:* ${v("f-nome")}`, `*Marca:* ${v("f-marca")}`, `*E-mail:* ${v("f-email")}`,
+      v("f-tel") ? `*WhatsApp:* ${v("f-tel")}` : "",
+      `*Tipo:* ${v("f-tipo")}`, `*Orçamento:* ${v("f-orc") || "Prefiro conversar"}`, "",
+      `*Proposta:* ${v("f-msg")}`
+    ].filter((l, i, a) => l !== "" || a[i - 1] !== "");
+    const url = `https://wa.me/${phoneDigits.join("")}?text=${encodeURIComponent(linhas.join("\n"))}`;
+    const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    document.body.appendChild(a); a.click(); a.remove();
+    status.style.color = ""; status.textContent = "Abrimos o WhatsApp com a sua proposta pronta. É só tocar em enviar.";
+    showToast("Proposta pronta no WhatsApp");
   });
 
   /* ---------- Dialogs ---------- */
