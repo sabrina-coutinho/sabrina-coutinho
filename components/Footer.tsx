@@ -22,7 +22,7 @@ export function Footer() {
           </div>
           <div>
             <span className="eyebrow">Navegue</span>
-            <ul><li><a href="#cupons">Cupons exclusivos</a></li><li><a href="#sobre">Sobre a Sabrina</a></li><li><a href="#feed">Feed & Reels</a></li><li><a href="#contato">Parcerias & mídia kit</a></li></ul>
+            <ul><li><a href="#cupons">Cupons exclusivos</a></li><li><a href="#sobre">Sobre a Sabrina</a></li><li><a href="#feed">Feed</a></li><li><a href="#contato">Parcerias & mídia kit</a></li></ul>
           </div>
           <div>
             <span className="eyebrow">Privacidade</span>

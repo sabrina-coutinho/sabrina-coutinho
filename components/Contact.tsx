@@ -120,7 +120,7 @@ export function Contact() {
           <h2>Vamos criar <em>juntos</em>?</h2>
           <p className="lede">Conteúdo autêntico para marcas de fitness, moda, beleza, gastronomia e lifestyle, com uma audiência de Brasília que acompanha a minha rotina de perto.</p>
           <div className="kit-stats">
-            <div><b>6.280</b><small>Seguidores</small></div>
+            <div><b>6.280+</b><small>Seguidores</small></div>
             <div><b>BSB</b><small>Público local</small></div>
             <div><b>5</b><small>Pilares</small></div>
           </div>

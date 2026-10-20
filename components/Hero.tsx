@@ -1,5 +1,6 @@
 "use client";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { INSTAGRAM } from "@/lib/content";
 
@@ -50,7 +51,7 @@ export function Hero() {
             <a className="btn ghost" href="#cupons">Ver Cupons Exclusivos</a>
           </motion.div>
           <motion.div className="hero-meta" {...item(0.42)}>
-            <div><b>6.280</b><small>seguidores</small></div>
+            <div><b>6.280+</b><small>seguidores</small></div>
             <div><b>5</b><small>pilares de conteúdo</small></div>
             <div><b>DF</b><small>base em Brasília</small></div>
           </motion.div>
@@ -61,9 +62,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0, scale: 1, clipPath: "inset(0% 0 0 0 round 0px 0px 0px 0px)" }}
           transition={{ duration: 1.2, ease, delay: 0.15 }}>
           <div className="arch">
-            {/* Substitua por: <Image src="/sabrina.jpg" alt="Sabrina Coutinho" fill priority sizes="420px" /> */}
-            <div className="initial" aria-hidden="true">S</div>
-            <span className="ph-note">foto de destaque</span>
+            <Image src="/fotos/sabrina-hero.jpg" alt="Sabrina Coutinho sorrindo, segurando uma taça de drink" fill priority sizes="(min-width: 900px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "50% 22%" }} />
           </div>
           <div className="seal" aria-hidden="true">
             <svg viewBox="0 0 132 132"><defs><path id="circ" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" /></defs>

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import { PILLARS } from "@/lib/content";
 import { Reveal } from "./Reveal";
@@ -20,7 +21,11 @@ export function About() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="eyebrow" style={{ marginBottom: 18 }}>Meus destaques · toque para abrir</p>
+          <figure className="about-photo">
+            <Image src="/fotos/corrida-chuva.jpg" alt="Sabrina correndo na chuva durante uma prova, fazendo sinal de paz" fill sizes="(min-width: 900px) 560px, 92vw" />
+            <figcaption>Prova na chuva, sorriso no rosto: a atleta híbrida em construção.</figcaption>
+          </figure>
+          <p className="eyebrow" style={{ margin: "28px 0 18px" }}>Meus destaques · toque para abrir</p>
           <div className="rings">
             {PILLARS.map((p, i) => (
               <motion.button key={p.title} className="ring" aria-expanded={open === i}

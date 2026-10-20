@@ -1,43 +1,26 @@
 // Conteúdo editável do site. Troque parceiros/códigos pelos acordos reais antes de publicar.
 
-export type CouponCategory = "beleza" | "lazer" | "fitness";
-
 export interface Coupon {
   id: string;
-  cat: CouponCategory;
+  label: string;      // categoria exibida no card
   partner: string;
   desc: string;
   benefit: string;
   unit: string;
-  code: string;
-  url?: string; // link do parceiro (opcional)
+  code?: string;      // código do cupom; vazio = "diga que veio pela Sabrina"
+  url?: string;       // Instagram ou site do parceiro (https://...)
 }
 
-export const CATEGORIES: { id: CouponCategory | "todos"; label: string }[] = [
-  { id: "todos", label: "Todos" },
-  { id: "beleza", label: "💅 Estética & Beleza" },
-  { id: "lazer", label: "🍺 Gastronomia & Lazer" },
-  { id: "fitness", label: "🏋️‍♀️ Fitness & Estilo" },
-];
-
-export const CATEGORY_LABEL: Record<CouponCategory, string> = {
-  beleza: "Estética & Beleza",
-  lazer: "Gastronomia & Lazer",
-  fitness: "Fitness & Estilo",
-};
-
-// EXEMPLOS — substituir pelos parceiros e códigos reais
+// TODO: preencher `url` de cada parceiro (e `code`, se houver cupom com código)
 export const COUPONS: Coupon[] = [
-  { id: "cilios", cat: "beleza", partner: "Cílios", desc: "Extensão de cílios fio a fio ou volume russo no studio parceiro.", benefit: "15%", unit: "na 1ª aplicação", code: "SABRINA15" },
-  { id: "labial", cat: "beleza", partner: "Micropigmentação Labial", desc: "Lábios com cor natural e duradoura, sem precisar de batom todo dia.", benefit: "10%", unit: "no procedimento", code: "SCLABIAL10" },
-  { id: "unhas", cat: "beleza", partner: "Unhas", desc: "Alongamento e manutenção com a nail designer que cuida das minhas.", benefit: "R$20", unit: "de desconto", code: "SCNAILS" },
-  { id: "garagem", cat: "lazer", partner: "Garagem Beer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos.", benefit: "10%", unit: "na comanda", code: "GARAGEMSC" },
-  { id: "restaurantes", cat: "lazer", partner: "Restaurantes em Brasília", desc: "Meus lugares favoritos pra comer bem em Brasília, testados e aprovados.", benefit: "Sobremesa", unit: "cortesia", code: "SABRINABSB" },
-  { id: "experiencias", cat: "lazer", partner: "Experiências", desc: "Day use, passeios e programas para curtir o fim de semana no DF.", benefit: "15%", unit: "por pessoa", code: "SCEXPERIENCIA" },
-  { id: "moda-fitness", cat: "fitness", partner: "Moda Fitness", desc: "As leggings e tops que aguentam treino de força e corrida.", benefit: "10%", unit: "em todo o site", code: "SABRINAFIT" },
-  { id: "suplementos", cat: "fitness", partner: "Suplementos", desc: "Whey, creatina e o que eu realmente uso na minha rotina híbrida.", benefit: "12%", unit: "na compra", code: "SABRINA12" },
-  { id: "looks", cat: "fitness", partner: "Looks do dia a dia", desc: "Peças versáteis que vão do treino ao trabalho e ao passeio com a família.", benefit: "Frete", unit: "grátis", code: "SCLOOKS" },
+  { id: "pamela-costa", label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção" },
+  { id: "velume", label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto" },
+  { id: "nx3dstudio", label: "Studio parceiro", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto" },
+  { id: "garagem-beer", label: "Gastronomia & Lazer", partner: "Garagem Beer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos.", benefit: "10%", unit: "na comanda" },
 ];
+
+export const couponMessage = (c: Coupon) => c.code || `Oi! Vim pela @sabrinaa.coutinho e quero meu desconto de ${c.benefit} 🤍`;
+export const safeUrl = (u?: string) => (u && /^https:\/\//.test(u) ? u : undefined);
 
 export const PILLARS = [
   { emoji: "🏋️‍♂️", title: "Treinos", text: "Força, corrida e a construção de uma atleta híbrida, semana a semana." },
@@ -47,23 +30,12 @@ export const PILLARS = [
   { emoji: "✈️", title: "Viagens", text: "Roteiros, malas inteligentes e treinos fora de casa." },
 ];
 
-// Troque `tone` por `image: "/feed/arquivo.jpg"` quando tiver as fotos
-export const REELS = [
-  { tag: "Reel · evolução", title: "Antes & depois de 1 ano de treino", glyph: "💪", tone: "t3" },
-  { tag: "Reel · treino", title: "Força + corrida no mesmo dia", glyph: "🏃‍♀️", tone: "t1" },
-  { tag: "Reel · estilo", title: "3 looks com a mesma legging", glyph: "👗", tone: "t4" },
-  { tag: "Reel · maternidade", title: "Minha manhã de mãe que treina", glyph: "👶", tone: "t5" },
-  { tag: "Reel · receita", title: "Marmita da semana em 1 hora", glyph: "🥗", tone: "t6" },
-  { tag: "Reel · viagem", title: "Como treino fora de casa", glyph: "✈️", tone: "t2" },
-];
-
+// Fotos do feed (em /public/fotos). `pos` = enquadramento (object-position).
 export const POSTS = [
-  { label: "Evolução", title: "Antes & depois", glyph: "📈", tone: "t1" },
-  { label: "Treino", title: "Dia de força", glyph: "🏋️‍♀️", tone: "t3" },
-  { label: "Look", title: "Look do dia", glyph: "🤍", tone: "t4" },
-  { label: "Família", title: "Domingo em família", glyph: "👨‍👩‍👧", tone: "t5" },
-  { label: "Corrida", title: "Longão de sábado", glyph: "🏃‍♀️", tone: "t6" },
-  { label: "Rotina", title: "Rotina das 5h", glyph: "☕", tone: "t2" },
+  { image: "/fotos/bmw-life.jpg", label: "Parcerias", title: "Evento BMW Life", alt: "Sabrina em evento da BMW Life", pos: "50% 30%" },
+  { image: "/fotos/look-garagem-beer.jpg", label: "Look", title: "Noite na Garagem Beer", alt: "Sabrina de vestido amarelo na Garagem Beer", pos: "50% 35%" },
+  { image: "/fotos/look-noite.jpg", label: "Look", title: "Look da noite", alt: "Sabrina com corset vinho e calça marrom", pos: "50% 30%" },
+  { image: "/fotos/viagem.jpg", label: "Viagens", title: "Pé na estrada", alt: "Sabrina olhando pela janela durante uma viagem", pos: "50% 30%" },
 ];
 
 export const INSTAGRAM = "https://instagram.com/sabrinaa.coutinho";

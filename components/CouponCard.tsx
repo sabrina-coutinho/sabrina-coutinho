@@ -1,14 +1,14 @@
 "use client";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { CATEGORY_LABEL, type Coupon } from "@/lib/content";
+import { couponMessage, safeUrl, type Coupon } from "@/lib/content";
 import { copyToClipboard, toast } from "./Toast";
 
 const SPARKS = Array.from({ length: 10 }, (_, i) => (Math.PI * 2 * i) / 10);
 
 /**
  * Cupom em formato de ticket com picote.
- * Clique → copia o código, botão vira "Copiado!" com check desenhado, faíscas e toast.
+ * Clique → copia o código (ou a mensagem "vim pela Sabrina"), botão vira "Copiado!" com check desenhado, faíscas e toast.
  */
 export function CouponCard({ coupon, index = 0 }: { coupon: Coupon; index?: number }) {
   const [copied, setCopied] = useState(false);
@@ -22,15 +22,18 @@ export function CouponCard({ coupon, index = 0 }: { coupon: Coupon; index?: numb
     return () => clearTimeout(t);
   }, [copied, burst]);
 
+  const url = safeUrl(coupon.url);
+  const value = couponMessage(coupon);
+
   async function onCopy() {
-    const ok = await copyToClipboard(coupon.code);
+    const ok = await copyToClipboard(value);
     if (!ok && codeRef.current) {
       // Fallback: seleciona o código para o usuário copiar manualmente
       const r = document.createRange(); r.selectNodeContents(codeRef.current);
       const s = window.getSelection(); s?.removeAllRanges(); s?.addRange(r);
     }
     setCopied(true); setBurst(b => b + 1);
-    toast(ok ? `Cupom ${coupon.code} copiado com sucesso!` : "Cupom selecionado: use Copiar");
+    toast(!ok ? "Selecione o texto e use Copiar" : coupon.code ? `Cupom ${coupon.code} copiado com sucesso!` : "Mensagem copiada! É só colar no direct ou no WhatsApp");
   }
 
   return (
@@ -44,20 +47,25 @@ export function CouponCard({ coupon, index = 0 }: { coupon: Coupon; index?: numb
       whileHover={reduce ? undefined : { y: -6, rotate: -0.4 }}
     >
       <div className="ticket-body">
-        <div className="ticket-top"><span className="cat">{CATEGORY_LABEL[coupon.cat]}</span></div>
-        <h3>{coupon.partner}</h3>
+        <div className="ticket-top">
+          <span className="cat">{coupon.label}</span>
+          {url && <a className="visit" href={url} target="_blank" rel="noopener noreferrer">Ver perfil ↗</a>}
+        </div>
+        <h3>{url ? <a href={url} target="_blank" rel="noopener noreferrer">{coupon.partner}</a> : coupon.partner}</h3>
         <p>{coupon.desc}</p>
         <p className="benefit">{coupon.benefit}<small>{coupon.unit}</small></p>
       </div>
 
       <div className="ticket-stub">
-        <span className="code" ref={codeRef}>{coupon.code}</span>
+        {coupon.code
+          ? <span className="code" ref={codeRef}>{coupon.code}</span>
+          : <span className="say" ref={codeRef}><small>Para usar</small>Diga que veio pela Sabrina</span>}
         <motion.button
           type="button"
           className={`copy${copied ? " done" : ""}`}
           onClick={onCopy}
           whileTap={{ scale: 0.95 }}
-          aria-label={`Copiar cupom ${coupon.code}`}
+          aria-label={coupon.code ? `Copiar cupom ${coupon.code}` : `Copiar mensagem para ${coupon.partner}`}
           style={{ animation: "none" }}
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -71,7 +79,7 @@ export function CouponCard({ coupon, index = 0 }: { coupon: Coupon; index?: numb
               </motion.span>
             ) : (
               <motion.span key="idle" initial={{ y: 14, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -14, opacity: 0 }} transition={{ duration: 0.2 }}>
-                Copiar cupom
+                {coupon.code ? "Copiar cupom" : "Copiar mensagem"}
               </motion.span>
             )}
           </AnimatePresence>
