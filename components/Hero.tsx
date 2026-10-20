@@ -64,12 +64,6 @@ export function Hero() {
           <div className="arch">
             <Image src="/fotos/sabrina-hero.jpg" alt="Sabrina Coutinho sorrindo, segurando uma taça de drink" fill priority sizes="(min-width: 900px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "50% 22%" }} />
           </div>
-          <div className="seal" aria-hidden="true">
-            <svg viewBox="0 0 132 132"><defs><path id="circ" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" /></defs>
-              <text><textPath href="#circ">Atleta híbrida em construção • força • corrida • </textPath></text></svg>
-            <span className="core">em<br />obra</span>
-          </div>
-          <span className="tag-float">Mãe 🤍 · rotina real</span>
         </motion.figure>
       </div>
     </section>
