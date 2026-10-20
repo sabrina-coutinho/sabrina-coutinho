@@ -12,3 +12,6 @@ next-env.d.ts
 
 .DS_Store
 *.log
+
+# Netlify (estado local)
+.netlify
