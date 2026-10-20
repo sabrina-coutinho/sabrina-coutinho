@@ -55,6 +55,6 @@ Vercel ou Netlify, com as variáveis de `.env.example` cadastradas no painel. O 
 
 ## Personalizar
 
-- **Fotos:** coloque em `public/` e troque os placeholders em `Hero.tsx` (retrato em arco) e `lib/content.ts` (reels e grid).
-- **Cupons:** `lib/content.ts` → `COUPONS`. Os atuais são exemplos.
+- **Fotos:** ficam em `public/fotos/` (Next.js) e `estatico/fotos/` (GitHub Pages). O feed é definido em `lib/content.ts` → `POSTS`.
+- **Cupons e parceiros:** `lib/content.ts` → `COUPONS` e `PARTNERS` (no site estático, os mesmos dados ficam no `<script>` de `estatico/index.html`).
 - **Cores e fontes:** tokens no topo de `app/globals.css`.
