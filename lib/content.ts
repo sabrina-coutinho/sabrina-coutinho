@@ -11,12 +11,22 @@ export interface Coupon {
   url?: string;       // Instagram ou site do parceiro (https://...)
 }
 
-// TODO: preencher `url` de cada parceiro (e `code`, se houver cupom com código)
+// Todos os cupons: 10%. `code` vazio = a cliente diz que veio pela Sabrina.
 export const COUPONS: Coupon[] = [
-  { id: "pamela-costa", label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção" },
-  { id: "velume", label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto" },
-  { id: "nx3dstudio", label: "Studio parceiro", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto" },
-  { id: "garagem-beer", label: "Gastronomia & Lazer", partner: "Garagem Beer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos.", benefit: "10%", unit: "na comanda" },
+  { id: "pamela-costa", label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção", url: "https://www.instagram.com/studiopamelacosta_/" },
+  { id: "velume", label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto", url: "https://www.instagram.com/velumeestetica/" },
+  { id: "nx3dstudio", label: "Studio", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto", url: "https://www.instagram.com/nx3dstudio/" },
+];
+
+/** Marcas e profissionais indicados (sem cupom). `handle` = @ do Instagram. */
+export const PARTNERS = [
+  { name: "Kordial Store", handle: "kordial.store", label: "Loja", desc: "Uma das lojas que fazem parte do meu dia a dia." },
+  { name: "Gaby Bronze", handle: "gabybronze", label: "Bronzeamento", desc: "Bronze bonito e natural, do jeitinho que eu gosto." },
+  { name: "Samantha Medeiros Beauty", handle: "samanthamedeirosbeauty", label: "Beleza", desc: "Cuidados de beleza com quem eu confio." },
+  { name: "Jefferson Maciel", handle: "ojeffersonmaciel", label: "Parceiro", desc: "Profissional que eu indico de olhos fechados." },
+  { name: "Andressa Silva", handle: "andressasilva_lisoespelhado", label: "Liso espelhado", desc: "Cabelo liso com brilho e movimento de verdade." },
+  { name: "Patrão Hortifruti", handle: "patraohortifruti", label: "Hortifruti", desc: "Frutas, verduras e legumes fresquinhos pra cozinha da semana." },
+  { name: "Garagem Beer", handle: "", label: "Gastronomia & Lazer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos." },
 ];
 
 export const couponMessage = (c: Coupon) => c.code || `Oi! Vim pela @sabrinaa.coutinho e quero meu desconto de ${c.benefit} 🤍`;

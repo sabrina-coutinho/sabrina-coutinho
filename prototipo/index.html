@@ -349,7 +349,7 @@ dialog p, dialog li { color: var(--muted); }
 dialog ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 
 
-.coupons { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.coupons { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .ticket h3 a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s var(--ease); }
 .ticket h3 a:hover { background-size: 100% 1px; }
 .visit { font-size: .76rem; font-weight: 600; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; white-space: nowrap; transition: background .25s, color .25s, border-color .25s; }
@@ -368,6 +368,22 @@ img.bg { width: 100%; height: 100%; object-fit: cover; display: block; }
 .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; display: block; transition: transform 1.2s var(--ease); }
 .about-photo:hover img { transform: scale(1.05); }
 .about-photo figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 10px 14px; border-radius: 12px; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); font-size: .82rem; }
+
+.partners-head { margin-top: clamp(48px, 7vw, 80px); margin-bottom: 22px; display: grid; gap: 10px; }
+.partners-head h3 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); }
+.partners-head h3 em { font-style: italic; color: var(--olive); }
+.partners { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.partner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); text-decoration: none; color: var(--ink); min-width: 0; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s var(--ease); }
+a.partner:hover { transform: translateY(-4px); border-color: var(--nude); box-shadow: var(--shadow); }
+.partner .avatar { flex: none; width: 52px; height: 52px; border-radius: 50%; padding: 2px; background: conic-gradient(from 200deg, var(--olive), var(--nude), var(--olive)); transition: transform .5s var(--ease); }
+a.partner:hover .avatar { transform: rotate(18deg); }
+.partner .avatar span { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--surface); border: 2px solid var(--paper); font-family: var(--display); font-style: italic; font-size: 1.4rem; }
+.pinfo { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.pinfo .cat { font-size: .62rem; }
+.pinfo b { font-weight: 600; font-size: .98rem; line-height: 1.25; }
+.pinfo small { color: var(--muted); font-size: .8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.partner .go { font-size: 1rem; color: var(--muted); transition: transform .35s var(--ease), color .3s; }
+a.partner:hover .go { transform: translate(3px, -3px); color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
@@ -434,6 +450,11 @@ img.bg { width: 100%; height: 100%; object-fit: cover; display: block; }
       </div>
       <div class="coupons" id="coupons"></div>
       <p class="note">Os descontos são oferecidos pelos parceiros e podem mudar. Confirme as condições direto com cada um.</p>
+      <div class="partners-head reveal">
+        <p class="eyebrow">Também indico</p>
+        <h3>Marcas e profissionais <em>que eu confio</em></h3>
+      </div>
+      <div class="partners" id="partners"></div>
     </div>
   </section>
 
@@ -653,10 +674,9 @@ img.bg { width: 100%; height: 100%; object-fit: cover; display: block; }
   /* ---------- Cupons ---------- */
   // url: Instagram ou site do parceiro (preencher). code: deixe "" se o desconto é só falar que veio pela Sabrina.
   const COUPONS = [
-    { label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção", code: "", url: "" },
-    { label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto", code: "", url: "" },
-    { label: "Studio parceiro", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto", code: "", url: "" },
-    { label: "Gastronomia & Lazer", partner: "Garagem Beer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos.", benefit: "10%", unit: "na comanda", code: "", url: "" }
+    { label: "Cílios · Unhas", partner: "Studio Pamela Costa", desc: "Extensão de cílios e unhas com o desconto valendo toda vez que você for, na primeira aplicação e em cada manutenção.", benefit: "10%", unit: "na 1ª aplicação e em toda manutenção", code: "", url: "https://www.instagram.com/studiopamelacosta_/" },
+    { label: "Estética", partner: "Velume Estética", desc: "Os cuidados de estética que fazem parte da minha rotina, com desconto exclusivo pra quem vem por aqui.", benefit: "10%", unit: "de desconto", code: "", url: "https://www.instagram.com/velumeestetica/" },
+    { label: "Studio", partner: "NX3Dstudio", desc: "Parceria exclusiva com desconto especial pra quem me acompanha.", benefit: "10%", unit: "de desconto", code: "", url: "https://www.instagram.com/nx3dstudio/" }
   ];
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const safeUrl = u => /^https:\/\//.test(u || "") ? u : "";
@@ -680,6 +700,23 @@ img.bg { width: 100%; height: 100%; object-fit: cover; display: block; }
         </button>
       </div>
     </article>`;
+  }).join("");
+
+  const PARTNERS = [
+    { name: "Kordial Store", handle: "kordial.store", label: "Loja", desc: "Uma das lojas que fazem parte do meu dia a dia." },
+    { name: "Gaby Bronze", handle: "gabybronze", label: "Bronzeamento", desc: "Bronze bonito e natural, do jeitinho que eu gosto." },
+    { name: "Samantha Medeiros Beauty", handle: "samanthamedeirosbeauty", label: "Beleza", desc: "Cuidados de beleza com quem eu confio." },
+    { name: "Jefferson Maciel", handle: "ojeffersonmaciel", label: "Parceiro", desc: "Profissional que eu indico de olhos fechados." },
+    { name: "Andressa Silva", handle: "andressasilva_lisoespelhado", label: "Liso espelhado", desc: "Cabelo liso com brilho e movimento de verdade." },
+    { name: "Patrão Hortifruti", handle: "patraohortifruti", label: "Hortifruti", desc: "Frutas, verduras e legumes fresquinhos pra cozinha da semana." },
+    { name: "Garagem Beer", handle: "", label: "Gastronomia & Lazer", desc: "Chopp gelado e petiscos pra fechar a semana com a família e os amigos." }
+  ];
+  $("#partners").innerHTML = PARTNERS.map(p => {
+    const url = p.handle ? `https://www.instagram.com/${encodeURIComponent(p.handle)}/` : "";
+    const inner = `<span class="avatar" aria-hidden="true"><span>${esc(p.name.charAt(0))}</span></span>
+      <span class="pinfo"><span class="cat">${esc(p.label)}</span><b>${esc(p.name)}</b><small>${p.handle ? "@" + esc(p.handle) : esc(p.desc)}</small></span>
+      ${url ? '<span class="go" aria-hidden="true">↗</span>' : ""}`;
+    return url ? `<a class="partner" href="${esc(url)}" target="_blank" rel="noopener noreferrer" title="${esc(p.desc)}">${inner}</a>` : `<div class="partner">${inner}</div>`;
   }).join("");
 
   $("#coupons").addEventListener("click", async e => {
