@@ -1,0 +1,42 @@
+// Banco: PostgreSQL gerenciado (Neon, Supabase, RDS…) com:
+//  - TLS obrigatório na conexão (sslmode=require na DATABASE_URL)
+//  - criptografia de disco AES-256 do provedor (em repouso)
+//  - e, por cima, criptografia de campo AES-256-GCM na aplicação (lib/crypto.ts)
+//    para todos os dados pessoais. Quem ler um backup vazado só vê texto cifrado.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Proposta {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+
+  // Dados pessoais — sempre cifrados (formato v1.iv.tag.ct)
+  nomeEnc       String
+  emailEnc      String
+  telefoneEnc   String?
+  mensagemEnc   String
+
+  // Índice cego (HMAC) para localizar/excluir por e-mail sem guardá-lo em claro
+  emailHash     String
+
+  // Dados não pessoais, úteis para triagem
+  marca         String
+  tipo          String
+  orcamento     String
+
+  // Evidência do consentimento LGPD (art. 8º): quando e qual versão da política
+  consentAt     DateTime
+  policyVersion String
+
+  status        String   @default("nova") // nova | respondida | arquivada
+
+  @@index([emailHash])
+  @@index([createdAt])
+}
