@@ -3,19 +3,4 @@
   publish = "estatico"
   command = ""
 
-# Headers de segurança (OWASP) para todas as páginas
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-    Cross-Origin-Opener-Policy = "same-origin"
-
-# Fotos: cache longo
-[[headers]]
-  for = "/fotos/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
+# Headers de segurança: ver estatico/_headers (vale também para upload manual)
